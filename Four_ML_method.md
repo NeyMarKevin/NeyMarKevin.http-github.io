@@ -40,6 +40,15 @@ So now we get:
 > $$ \vec{X} = \vec{A}\vec{S}$$
 > 
 > $\vec{X}$ is the measurement we have, $\vec{A}$ is the superposition parameter matrix. And $\vec{S}$ is what we really want.
+
 We can put the inverse A to the left side to get the result expression.
 
 >$$\vec{A}^{-1}\vec{X} = \vec{S}$$
+
+Luckily, your computer has two mics, so there are three measurement data here (You ear, and computer's data)
+
+So what now? actually we want two sepearte sounds in $\vec{S}$, it looks like we need to find $\vec{A}$
+
+$\vec{A}$ is a 3 by 3 matrix to show that the different amplitudes of different sounds, unfortunately, the linear algebra also tells us it's impossible to find a specific solution for a one-degree equation which has two unknown varables.
+
+So it seems like we have reached to a dead end, there is no solution for this equation, maybe you will have a weird solution (maybe a cow has a fight with a horse!!) This is definetely possible because both of these two matrixs are changeable, you can have the same $\vec{X}$ by changing the value in $\vec{A}$ 
