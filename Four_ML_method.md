@@ -15,4 +15,17 @@ In this case, the noise is not disappeared or become small, but in your feelings
 This type of problem called Blind Source Separation problem (BSS), which refers to the fact that the data we measure (or hear) is a mixture of data from multiple different sources. It should be noted that the data we measure is not a mixture of target data and noise, but a mixture of multiple different target data. (not like the cat and dog's noise, this time you want to hear their barking too!!)
 
 ### Sounds add up linearly
-We know that sounds add up linearly. What the microphone or our eardrum picks up is a linear superposition of multiple sound signals. Like the figure shows.
+We know that sounds add up linearly. What the microphone or our eardrum picks up is a linear superposition of multiple sound signals. Like the figure shows. So in this case, the sounds we heard can be seen as the combination of different types of sound (dog's woof, cat's mew and human's talking). The only different between the sound you heard and the sound computer heard is the size of sound. 
+
+### Some basic mathematics
+We are almost there! To understand what is ICA and how it works, we need a little mathematics (Just a little...)
+***
+Like what I said before, the sounds we heard is a combination of different types of sound, we can use a linear vector to represent different type of sound.
+> $\vec{S}$= [ $x_{dog}$, $x_{cat}$, $x_{movie}$]
+
+Also, to show the combination of these types of sounds, we need another martix to do the combination.
+> $\vec{A}$ = 
+> $$\begin{bmatrix} 
+> $w_1$ & $w_2$ & $w_3$\\
+> $w_4$ & $w_5$ & $w_6$ \\
+> $w_7$ & $w_8$ $w_9$ 
