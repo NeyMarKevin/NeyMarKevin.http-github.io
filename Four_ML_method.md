@@ -55,19 +55,19 @@ So what now? actually we want the sepearte sounds in $\vec{S}$, it looks like we
 
 $\vec{A}$ is a 3 by 3 matrix to show that the different amplitudes of different sounds, unfortunately, the linear algebra also tells us it's impossible to find a specific solution for a one-degree equation which has two unknown varables.
 
-So it seems like we have reached to a dead end, there is no solution for this equation, maybe you will have a weird solution (maybe a cow has a fight with a horse!!) This is definetely possible because both of these two matrixs are changeable, you can have the same $\vec{X}$ by changing the value in $\vec{A}$ 
+So it seems like we have reached to a dead end, the solutions are not specific for this equation, maybe you will have a weird solution about the sound type (maybe the result tells you it a cow has a fight with a horse!!) This is definetely possible because both of these two matrixs are changeable, you can have various $\vec{X}$ by changing the value in $\vec{A}$.
 
 ### Find one of the possibility
 
-So now we lack of information to seperate the sound (to find the matrix $\vec{A}$), the only thing we can do is assume some of the situations (or limitations) to "create" more information for our equation. Anyway, the results might be different from the original sound's signal. But we can say this result is one of the possibility and we can use this result because it similar to the original one (even if they are not same, but they are similar!). 
+So now we lack information to separate the sound (to find the matrix $\vec{A}$), and the only thing we can do is assume some of the situations (or add some limitations) to "create" more information for our equation. Anyway, the results might still be different from the original sound's signal. But we can say this result is one of the possibilities and we can use this because it seems similar to the original one (even if they are not the same, but they are similar!). 
 
 #### What we assume?
 
-Okay, the fist thing we need to assume is that **all of the sounds we have are independent**, they are not related to each other. The another assme is the sound is pre-whiten, which means the signal we have now will have this relationship.
+Okay, the fist thing we need to assume is that **all of the sounds we have are independent**, they are not related to each other. The another assume is the sound is pre-whiten, which means the signal we have now will have this relationship.
 
 > $$\vec{S} \vec{S}^T = \vec{I}$$
 
-$\vec{I}$ is a unit matrix. So now We can do the singular value decomposition for $\vec{A}$, and we get:
+$\vec{I}$ is a unit matrix. So now we can do the singular value decomposition for $\vec{A}$, and we get:
 
 > $$\vec{A} = \vec{U}\vec{\sum}\vec{V}^T $$
 
