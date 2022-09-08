@@ -71,7 +71,7 @@ $\vec{I}$ is a unit matrix. So now we can do the singular value decomposition fo
 
 > $$\vec{A} = \vec{U}\vec{\sum}\vec{V}^T $$
 
-Do not be confusing about these three new guys, they are just some symbols :->, all we need to know is that **any matrix can be decomposed as a multiplication of three matrices**, and one of the matrices is a orthogonal matrix ($\vec{U}$), the other one is a rotation matrix ($\vec{V}$)
+Do not be confusing about these three new guys, they are just some symbols :->, all we need to know is that **any matrix can be decomposed as a multiplication of three matrices**, and one of the matrices is a orthogonal matrix ( $\vec{U}$ ) , the other one is a rotation matrix ( $\vec{V}$ )
 
 The rotation matrix has the following properties:
 
@@ -117,7 +117,7 @@ If all variables are statistically independent, then the $\vec{I}$(**y**) will b
 The expression about the muti-information is like:
 > $$ \vec{I}(**y**) = \int_{}^{}{**P**(y)log_2\frac{**P**(y)}{\quad\prod_i P(y_i)}}d**y** $$
 
-Nevermind about this long ugly expression, the all thing we need know is that this expression is related with our beautiful expression in the past. Let $ \vec{S}$ be the **P**(y), and the $\vec{I}$(**y**) will depend on the $X_w$, and the $\vec{V}$.
+Nevermind about this long ugly expression, the all thing we need know is that this expression is related with our beautiful expression in the past. Let $\vec{S}$ be the **P**(y), and the $\vec{I}$(**y**) will depend on the $X_w$, and the $\vec{V}$.
 
 We already know the $\vec{X_w}$, so we need to find the $\vec{V}$ to make the result become 0 (or minimize it). There are two methods to do it:
 
@@ -129,7 +129,9 @@ Or sometimes we cannot see the graph, in this case, we can transform the multi-i
 Anyway, we can use a lot of method to optimize this "loss function" and get the V vector. So finally! We get the $\vec{V}$. Now we have all of the three martrix, we can get our $\vec{A}$ and then find the inverse of it. Then we mutiple it with the $\vec{X}$ and get the result about one of the possible result $\vec{S}$.
 
 Now your computer is happy too, he can use this ICA method to seperate the sounds and choose the fight sound to hear. Here is an example of his work on brain wave.
+
 ![](https://cdn.jsdelivr.net/gh/NeyMarKevin/pic@main/202209081416292.gif)
+
 It seems like there is still some problems about ICA, they are:
 
 The Gaussian distribution signal cannot be recovered;
