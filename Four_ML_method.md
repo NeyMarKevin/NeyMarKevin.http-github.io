@@ -26,7 +26,7 @@ We know that sounds add up linearly. What the microphone of your computer or our
 ### Some basic mathematics
 We are almost there! To understand what is ICA and how it works, we need a little mathematics (Just a little...)
 ***
-Like we discussed before, the sounds we heard is a combination of different types of sound, we can use a linear vector to represent different type of sound.
+Like we discussed before, the sounds we heard is a combination of different types of sound, we can use a linear vector to represent different types of the sound.
 > $$\vec{S}= [x_{dog}, x_{cat}, x_{movie}]^T$$
 
 Also, to show the combination of these types of sounds, we need another martix to do the combination.
@@ -51,7 +51,7 @@ We can put the inverse A to the left side to get the result expression.
 
 Luckily, your computer has two mics, so there are three measurement data here (You ears and computer's data)
 
-So what now? actually we want two sepearte sounds in $\vec{S}$, it looks like we need to find $\vec{A}$
+So what now? actually we want the sepearte sounds in $\vec{S}$, it looks like we need to find $\vec{A}$
 
 $\vec{A}$ is a 3 by 3 matrix to show that the different amplitudes of different sounds, unfortunately, the linear algebra also tells us it's impossible to find a specific solution for a one-degree equation which has two unknown varables.
 
