@@ -8,6 +8,8 @@ Let's assume that you have a dog and a cat, today is a rainy weekend, and you ha
 
 The movie is splendid, you are really enjoying it, however, it seems like your dog and cat is boring too, so they decide to have a fight with each other to have some fun. So at this time, they are shouting at each other, and that really impacts you to hear the sound of the movie. You know what? Your computer can also hear the sound, and he is annoyed too,(but he cannot speak to you, and he is annoyed because of the movie sound! He is curious to the world and wants to hear more about the fight).
 
+![They are really in a big fight!](https://cdn.jsdelivr.net/gh/NeyMarKevin/pic@main/202209080925072.png)
+
 You are annoyed, your computer is annoying, but there's nothing you and he can do to stop the noise because the cat and dog will fight again and the computer cannot close the movie by itself, so you and your computer are trying to ignore them, and you pay all your attention to the movie, luckily, that really works!! You can hear the characters talking in the movie! In this case, you think: Let these two small devils fight then, I can ignore their noise and enjoy the movie. But your computer failed, he is still suffering from the movie noise because he cannot ignore it, he really wants some help.
 
 In this case, the noise is not disappeared or become small, but in your feelings, the noise disappeared and doesn't influence you to enjoy the movie. Thanks to the brain's help, the brain helps you eliminate most of the noise though it still exists. The noise cannot affect you any more! However, we cannot give the computer a brain (the computer will be unstoppable to control the world with a brain!), so the only thing we can do is develop an algorithm for him.
@@ -18,6 +20,8 @@ So let do your computer a favour and we can help them from the root.
 
 ### Sounds add up linearly
 We know that sounds add up linearly. What the microphone of your computer or our eardrum picks up is a linear superposition of multiple sound signals. Like the figure shows. So in this case, the sounds we heard can be seen as the combination of different types of sound (dog's woof, cat's mew and human's talking). The only different between the sound you heard and the sound computer heard is the size of sound. 
+
+![The linear sounds add up](https://cdn.jsdelivr.net/gh/NeyMarKevin/pic@main/202209080920238.jpeg)
 
 ### Some basic mathematics
 We are almost there! To understand what is ICA and how it works, we need a little mathematics (Just a little...)
@@ -59,4 +63,83 @@ So now we lack of information to seperate the sound (to find the matrix $\vec{A}
 
 #### What we assume?
 
-Okay, the fist thing we need to assume is that all of the sounds we have are independent, they are not related to each other
+Okay, the fist thing we need to assume is that **all of the sounds we have are independent**, they are not related to each other. The another assme is the sound is pre-whiten, which means the signal we have now will have this relationship.
+
+> $$\vec{S} \vec{S}^T = \vec{I}$$
+
+$\vec{I}$ is a unit matrix. So now We can do the singular value decomposition for $\vec{A}$, and we get:
+
+> $$\vec{A} = \vec{U}\vec{\sum}\vec{V}^T $$
+
+Do not be confusing about these three new guys, they are just some symbols :->, all we need to know is that **any matrix can be decomposed as a multiplication of three matrices**, and one of the matrices is a orthogonal matrix ($\vec{U}$), the other one is a rotation matrix ($\vec{V}$)
+
+The rotation matrix has the following properties:
+
+> $$\vec{V}^T = \vec{V}^{-1}$$
+
+Now we can do some interesting mutiple for our matrix (no worries, it's very easy)
+
+> $$\vec{X}\vec{X}^T = (\vec{A}\vec{S})(\vec{A}\vec{S})^T $$
+> 
+> $$ = \vec{A}\vec{A}^T $$ 
+>
+> $$ = (\vec{U}\vec{\sum}\vec{V}^T)(\vec{U}\vec{\sum}\vec{V}^T)^T $$
+>
+> $$ = \vec{U}\vec{\sum}\vec{V}^T\vec{V}\vec{\sum}^T\vec{U}^T $$
+>
+> $$ = \vec{U}\vec{\sum}^2\vec{U}^T $$
+
+And luckily, we know that $\vec{X}\vec{X}^T$ is a symmetric matrix, according to the properties of symmetric matrices, we know that symmetric matrices can be orthogonally decomposed by their singular vectors, namely:
+> $$ \vec{X}\vec{X}^T = \vec{E}\vec{D}\vec{E}^T $$
+
+Do you see the same thing between these two expressions? Yep! actually
+> $$ \vec{U} = \vec{E} $$
+> 
+> $$ \vec{\sum} = \sqrt{\vec{D}} $$
+
+Now, we have $\vec{U}$ and $\vec{\sum}$, the only thing we need is $\vec{V}$
+
+And now the $\vec{S}$ can be written as:
+
+> $$ \vec{S} = \vec{V}\sqrt{\vec{D}}\vec{E}^T\vec{X} $$
+
+From what we know, let's make the long equation become simple and elegant.
+
+> $$ \vec{X_w} = \sqrt{\vec{D}}\vec{E}^T\vec{X} $$
+
+So now, we can rewritten our expression as :
+> $$ \vec{S} = \vec{V}\vec{X_w}$$
+
+#### Some information knowledge...
+We're going to use information theory here. There are many theories in information theory that measure the statistical independence of a distribution. For example, the simplest one, mutual information, measures the independence of two variables. As generalized mutual information, multi-information can measure the statistical independence of multiple variables.
+If all variables are statistically independent, then the $\vec{I}$(**y**) will be 0, otherwise, $\vec{I}$(**y**) > 0
+
+The expression about the muti-information is like:
+> $$ \vec{I}(**y**) = \int_{}^{}{**P**(y)log_2\frac{**P**(y)}{\quad\prod_i P(y_i)}}d**y** $$
+
+Nevermind about this long ugly expression, the all thing we need know is that this expression is related with our beautiful expression in the past. Let $ \vec{S}$ be the **P**(y), and the $\vec{I}$(**y**) will depend on the $X_w$, and the $\vec{V}$.
+
+We already know the $\vec{X_w}$, so we need to find the $\vec{V}$ to make the result become 0 (or minimize it). There are two methods to do it:
+
+By using the properties of the rotation matrix, start from 0 degrees to 180 degrees, and observe which Angle has the smallest multi-information.
+
+Or sometimes we cannot see the graph, in this case, we can transform the multi-information expression in the expression into a function of entropy. Entropy is a well-known measure of uncertainty. And find the minimize of the new expression, we find the V martrix. After a long period of math calculation, we can get this expression:
+> $$ \vec{V} = argmin\sum_{i}H[(\vec{V}X_w)_i]$$
+
+Anyway, we can use a lot of method to optimize this "loss function" and get the V vector. So finally! We get the $\vec{V}$. Now we have all of the three martrix, we can get our $\vec{A}$ and then find the inverse of it. Then we mutiple it with the $\vec{X}$ and get the result about one of the possible result $\vec{S}$.
+
+Now your computer is happy too, he can use this ICA method to seperate the sounds and choose the fight sound to hear. Here is an example of his work on brain wave.
+![](https://cdn.jsdelivr.net/gh/NeyMarKevin/pic@main/202209081416292.gif)
+It seems like there is still some problems about ICA, they are:
+
+The Gaussian distribution signal cannot be recovered;
+
+Each signal is assumed to be independent of each other;
+
+Unable to distinguish the displaced source;
+
+Simultaneous increases and decreases in signal strength cannot be identified.
+
+So if you really want to use this method, it's necessary to consider about all of that. Just be careful.
+
+# LLE (In progress)
